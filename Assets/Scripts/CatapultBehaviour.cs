@@ -17,10 +17,12 @@ public class CatapultBehaviour : MonoBehaviour
 
     public Vector3 hitPos = new Vector3(0, -2, 0);
 
+    private int ballsRemaining = 0;
     private Vector3 ballStartPos;
 
     private void Start()
     {
+        ballsRemaining = GameManager.Instance.numberOfBalls;
         ballStartPos = ball.transform.position;
     }
 
@@ -52,6 +54,7 @@ public class CatapultBehaviour : MonoBehaviour
 
         if (phase == TouchPhase.Ended)
         {
+            ballsRemaining--;
             ball.GetComponent<Rigidbody2D>().gravityScale = 1f;
             shot = ballStartPos - transform.position;
             shot.Normalize();

@@ -10,15 +10,22 @@ public class CatapultBehaviour : MonoBehaviour
 
     public float power;
     public GameObject ball;
-    public Vector3 tPos;
+    public Vector3 restingPos;
+    public Vector3 offset;
 
     public Vector2 shot;
 
     public Vector3 hitPos = new Vector3(0, -2, 0);
 
+    private Vector3 ballStartPos;
+
+    private void Start()
+    {
+        ballStartPos = ball.transform.position;
+    }
+
     void Update()
     {
-
         switch (currentState)
         {
             case State.aiming:
@@ -34,32 +41,30 @@ public class CatapultBehaviour : MonoBehaviour
                 Debug.Log("Switch sent to Default");
                 break;
         }
-
     }
 
     void HandleClub(Vector2 position, TouchPhase phase)
     {
-
-        tPos = Camera.main.ScreenToWorldPoint(position);
-        tPos.z = 0;
-        transform.position = tPos;
+        restingPos = Camera.main.ScreenToWorldPoint(position);
+        restingPos.z = 0;
+        transform.position = restingPos;
+        ball.transform.position = transform.position - offset;
 
         if (phase == TouchPhase.Ended)
         {
-            shot = ball.transform.position - transform.position;
+            ball.GetComponent<Rigidbody2D>().gravityScale = 1f;
+            shot = ballStartPos - transform.position;
             shot.Normalize();
 
-            shot *= Vector2.Distance(ball.transform.position, transform.position) * power;
+            shot *= Vector2.Distance(ballStartPos, transform.position) * power;
 
             currentState = State.shooting;
-
         }
     }
 
     #region Player Controlling Methods
     void Aiming()
     {
-
         if (Input.GetButton("Fire1"))
         {
             HandleClub(Input.mousePosition, TouchPhase.Moved);
@@ -75,12 +80,10 @@ public class CatapultBehaviour : MonoBehaviour
 
             HandleClub(t.position, t.phase);
         }
-
     }
 
     void Shoot()
     {
-
         transform.position = Vector3.MoveTowards(transform.position, hitPos, 10);
 
         if (transform.position == hitPos)
@@ -89,17 +92,14 @@ public class CatapultBehaviour : MonoBehaviour
             shot = Vector2.zero;
             currentState = State.idle;
         }
-
     }
 
     void Idle()
     {
-
         if (ball.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
         {
             currentState = State.aiming;
         }
-
     }
 
     #endregion

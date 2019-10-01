@@ -10,6 +10,22 @@ public class GameManager : MonoBehaviour
 
     public List<Level> levelList = new List<Level>();
 
+    public int knightsRemaining;
+
+    public int KnightsRemaining
+    {
+        get { return knightsRemaining; }
+        set
+        {
+            knightsRemaining = value;
+
+            if (knightsRemaining <= 0)
+            {
+                Win();
+            }
+        }
+    }
+
     public static GameManager Instance
     {
         get
@@ -28,5 +44,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void Win()
+    {
 
+    }
+
+    public void Lose()
+    {
+
+    }
 }

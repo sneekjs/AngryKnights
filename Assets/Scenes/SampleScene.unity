@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 25047112}
   - component: {fileID: 25047111}
   m_Layer: 0
-  m_Name: Club
+  m_Name: Catapult
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  power: 50
+  power: 375
   ball: {fileID: 520234582}
   restingPos: {x: 0, y: 0, z: 0}
   offset: {x: 0, y: 0, z: 0}
@@ -610,6 +610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 522256750}
+  - component: {fileID: 522256751}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -631,6 +632,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &522256751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522256749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c187431bc49c24d42a81aed0ab2408fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfBalls: 1
+  levelList: []
+  knightsRemaining: 0
 --- !u!1 &580081346
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &850928056
 Transform:
   m_ObjectHideFlags: 0

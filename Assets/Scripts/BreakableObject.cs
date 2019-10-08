@@ -8,6 +8,13 @@ public abstract class BreakableObject : MonoBehaviour
 
     public List<Sprite> sprites = new List<Sprite>();
 
+    private SpriteRenderer sr;
+
+    private void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     public abstract void Break();
 
     public virtual void TakeDamage(int damage)
@@ -17,6 +24,8 @@ public abstract class BreakableObject : MonoBehaviour
         if (health <= 0)
         {
             Break();
+            return;
         }
+        sr.sprite = sprites[health];
     }
 }

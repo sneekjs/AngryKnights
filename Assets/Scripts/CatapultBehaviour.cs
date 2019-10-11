@@ -50,6 +50,7 @@ public class CatapultBehaviour : MonoBehaviour
             GameObject go = Instantiate(ballPrefab, hitPos - offset, Quaternion.identity);
             ball = go;
             BallsRemaining--;
+            currentState = State.idle;
         }
         switch (currentState)
         {
@@ -115,7 +116,6 @@ public class CatapultBehaviour : MonoBehaviour
         {
             ball.GetComponent<Rigidbody2D>().AddForce(shot);
             shot = Vector2.zero;
-            currentState = State.idle;
         }
     }
 

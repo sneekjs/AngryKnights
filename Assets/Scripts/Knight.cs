@@ -13,11 +13,14 @@ public class Knight : BreakableObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ball") && health > 0)
+        if (collision.gameObject.CompareTag("Ball") || collision.gameObject.CompareTag("Block"))
         {
-            GetComponent<Rigidbody2D>().gravityScale = 1;
-            TakeDamage(1);
-            sr.sprite = sprites[0];
+            if (health > 0)
+            {
+                GetComponent<Rigidbody2D>().gravityScale = 1;
+                TakeDamage(1);
+                sr.sprite = sprites[0];
+            }
         }
     }
 }

@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject cannonBall;
 
+    public GameObject winUI;
+
+    public GameObject loseUI;
+
     public int KnightsRemaining
     {
         get { return knightsRemaining; }
@@ -48,13 +52,18 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void FindRemainingKnights()
+    {
+        knightsRemaining = FindObjectsOfType<Knight>().Length;
+    }
+
     public void Win()
     {
-
+        winUI.SetActive(true);
     }
 
     public void Lose()
     {
-
+        loseUI.SetActive(true);
     }
 }

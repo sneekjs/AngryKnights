@@ -8,7 +8,7 @@ public abstract class BreakableObject : MonoBehaviour
 
     public List<Sprite> sprites = new List<Sprite>();
 
-    private SpriteRenderer sr;
+    protected SpriteRenderer sr;
 
     private void Start()
     {

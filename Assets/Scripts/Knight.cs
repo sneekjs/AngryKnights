@@ -1,4 +1,5 @@
-﻿public class Knight : BreakableObject
+﻿using UnityEngine;
+public class Knight : BreakableObject
 {
     public override void Break()
     {
@@ -8,5 +9,15 @@
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ball") && health > 0)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 1;
+            TakeDamage(1);
+            sr.sprite = sprites[0];
+        }
     }
 }

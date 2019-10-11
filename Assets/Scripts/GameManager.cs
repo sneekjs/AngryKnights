@@ -6,11 +6,15 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
 
-    public int numberOfBalls = 1;
-
     public List<Level> levelList = new List<Level>();
 
+    public int numberOfBalls = 1;
+
     public int knightsRemaining;
+
+    public int currency;
+
+    public GameObject cannonBall;
 
     public int KnightsRemaining
     {
